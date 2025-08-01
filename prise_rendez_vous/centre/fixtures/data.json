@@ -1,0 +1,98 @@
+[
+    {
+      "model": "centre.specialite",
+      "pk": 1,
+      "fields": {
+        "nom": "specialite 5"
+      }
+    },
+    {
+        "model": "centre.specialite",
+        "pk": 2,
+        "fields": {
+          "nom": "specialite 2"
+        }
+    },
+    {
+        "model": "centre.specialite",
+        "pk": 3,
+        "fields": {
+          "nom": "specialite 3"
+        }
+    },
+    {
+        "model": "centre.centre",
+        "pk": 1,
+        "fields": {
+            "nom": "Centre 1",
+            "adresse": "Kipe",
+            "contact": "621111111",
+            "specialites": [1, 2]
+        }
+    },
+    {
+        "model": "centre.centre",
+        "pk": 2,
+        "fields": {
+            "nom": "Centre 2",
+            "adresse": "Ratoma",
+            "contact": "62111222",
+            "specialites": [1, 3]
+        }
+    },
+    {
+        "model": "centre.centre",
+        "pk": 3,
+        "fields": {
+            "nom": "Centre 3",
+            "adresse": "Donka",
+            "contact": "62111333",
+            "specialites": [3]
+        }
+    },
+    {
+        "model": "centre.medecin",
+        "pk": 1,
+        "fields": {
+            "nom": "Saliou Diallo",
+            "specialite": 1,
+            "centre": 1
+        }
+    },
+    {
+        "model": "centre.medecin",
+        "pk": 2,
+        "fields": {
+            "nom": "Oumar Sylla",
+            "specialite": 1,
+            "centre": 1
+        }
+    },
+    {
+        "model": "centre.medecin",
+        "pk": 3,
+        "fields": {
+            "nom": "ibrahima Sow",
+            "specialite": 1,
+            "centre": 1
+        }
+    },
+    {
+        "model": "centre.medecin",
+        "pk": 4,
+        "fields": {
+            "nom": "Lamarana",
+            "specialite": 2,
+            "centre": 1
+        }
+    },
+    {
+        "model": "centre.medecin",
+        "pk": 5,
+        "fields": {
+            "nom": "Moussa",
+            "specialite": 2,
+            "centre": 2
+        }
+    }
+  ]
