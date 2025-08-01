@@ -1,0 +1,42 @@
+
+<div class="row justify-content-center mt-4">
+    <div class="col-10 mb-3">
+        <h1 class="fs-3">{{centre().nom}}</h1>
+        <span class="fs-5">{{centre().contact}}</span><br />
+        <span class="fs-6">{{centre().adresse}}</span>
+    </div>
+
+    <div class="col-10">
+        <div class="row justify-content-between">
+            <div class="col-7">
+                @if(centre()) {
+                    <app-table-medecin 
+                        [(selectedMedecin)]="selectedMedecin" 
+                        [centreId]="centreId()" 
+                        [centre]="centre()"
+                    />
+                }
+                
+            </div>
+        
+            <div class="col-4">
+                @if(selectedMedecin()) {
+                    <mat-card appearance="outlined">
+                        <mat-card-header>
+                          <mat-card-title>Prise de rendez-vous </mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-divider></mat-divider>
+                            <h6 class="mt-2">{{selectedMedecin().nom}} | {{selectedMedecin()?.specialite?.nom}}</h6>
+                        </mat-card-content>
+                        
+                    </mat-card>
+                }
+                
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+

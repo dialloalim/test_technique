@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row justify-content-between">
+            <div class="col-4">
+                <mat-form-field>
+                    <input matInput placeholder="Recherche un centre" #searchBox (keyup.enter)="onSearchCentre(searchBox.value)">
+                </mat-form-field>
+            </div>
+
+            <div class="col-2">
+                <button class="btn btn-primary">Ajouter</button>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <table mat-table [dataSource]="centres" class="mat-elevation-z8">
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let centre"> {{centre.id}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="nom">
+              <th mat-header-cell *matHeaderCellDef> Nom </th>
+              <td mat-cell *matCellDef="let centre"> {{centre.nom}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="adresse">
+              <th mat-header-cell *matHeaderCellDef> Adresse </th>
+              <td mat-cell *matCellDef="let centre"> {{centre.adresse}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="contact">
+              <th mat-header-cell *matHeaderCellDef> Contact </th>
+              <td mat-cell *matCellDef="let centre"> {{centre.contact}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="specialite">
+                <th mat-header-cell *matHeaderCellDef> Specialites </th>
+                <td mat-cell *matCellDef="let centre"> {{centre.liste_specialites.length}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let centre">
+                  
+                    <button mat-icon-button icon-color="accent" (click)="openCentre(centre)">
+                        <mat-icon>open_in_new</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+              
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>
