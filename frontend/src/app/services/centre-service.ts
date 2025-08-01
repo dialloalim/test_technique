@@ -31,6 +31,15 @@ export class CentreService {
     return this.http.get(`${this.BASE_URL}api/centres/${centreId}/`)
   }
 
+  post(centre: Centre) {
+    let data = {...centre, ...{specialites: centre.liste_specialites}}
+    if(centre.id === 0) {
+      return this.http.post(`${this.BASE_URL}api/centres/`, data)
+    } else {
+      return this.http.post(`${this.BASE_URL}api/centres/${centre.id}/update/`, data)
+    }
+  }
+
   getSpecialites(centreId: number) {
     return this.http.get(`${this.BASE_URL}api/centres/${centreId}/specialites/`)
   }

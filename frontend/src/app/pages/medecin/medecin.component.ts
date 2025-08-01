@@ -38,7 +38,7 @@ export class MedecinComponent implements OnInit{
   centreId = signal<number>(0) 
   selectedSpecialite = signal<number>(0)
   medecins: Medecin[] = []
-  selectedMedecin = model<Medecin>();
+  selectedMedecin = model<Medecin>(new Medecin());
   displayedColumns: string[] = ['id', 'nom', 'specialite', 'action'];
   error_message: string = ''
   centre = model<Centre>(new Centre());

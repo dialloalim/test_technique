@@ -7,8 +7,13 @@ from centre.serializers import CentreCreateSerializer, CentreSerializer, Medecin
 from utils.paginations import DefaultPagination
 from utils.constants import succes_key, message_key, errors_key
 
-class SpecialiteCreateAPIView(APIView):
+class SpecialiteAPIView(APIView):
     permission_classes = [AllowAny]
+
+    def get(self, request):
+        specialites = Specialite.objects.all()
+        specialites = SpecialiteSerializer(specialites, many=True).data
+        return Response({succes_key: True, "specialites": specialites})
 
     def post(self, request):
         
@@ -45,9 +50,42 @@ class CentreAPIView(APIView):
             serializer.save()
             return Response({succes_key: True, message_key: "Le cenre a été enregistré avec succès"})
         else:
+            data = request.data 
+            nom = data.get('nom')
+            if Centre.objects.filter(nom=nom).exists():
+                return Response({succes_key: False, message_key: f"Le centre {nom} existe deja"})
+
             return Response({succes_key: False, message_key: "Les donnees ne sont pas valides", errors_key: serializer.errors})
 
 
+
+
+class CentreUpdateAPIView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request, centre_id):
+        data = request.data 
+        nom = data.get('nom')
+        adresse = data.get('adresse')
+        contact = data.get('contact')
+        specialites = data.get('specialites')
+
+        if not Centre.objects.filter(id=centre_id).exists():
+            return Response({succes_key: False, message_key: f"Ce centre n'est pas enregistre"})
+
+        if Centre.objects.filter(nom=nom).exclude(id=centre_id):
+            return Response({succes_key: False, message_key: f"Le centre {nom} est deja enregistre"})
+
+        specialites = Specialite.objects.filter(id__in=specialites)
+        centre = Centre.objects.get(id=centre_id)
+        centre.nom = nom 
+        centre.adresse = adresse
+        centre.contact = contact
+        centre.specialites.set(specialites)
+        centre.save()
+        return Response({succes_key: True, message_key: f"Le centre a ete modifie avec succes"})
+
+            
 class CentreGetAPIView(APIView):
     permission_classes = [AllowAny]
 
